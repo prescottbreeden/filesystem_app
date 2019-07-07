@@ -1,5 +1,6 @@
 package scala.files
 import scala.annotation.tailrec
+import java.nio.file.FileSystemException
 
 class Directory(
   override val parentPath: String, 
@@ -34,6 +35,7 @@ class Directory(
       new Directory(parentPath, name, contents.filter(e => !e.name.equals(entryName)) :+ newEntry)
 
     def asDirectory: Directory = this
+    def asFile: File = throw new FileSystemException("Directory cannot be a file")
 
     def getType: String = "Directory"
 }

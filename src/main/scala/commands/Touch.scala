@@ -1,11 +1,11 @@
 package scala.commands
+import scala.files.DirEntry
 import scala.filesystem.State
 import scala.files.Directory
-import scala.files.DirEntry
+import scala.files.File
 
-class Mkdir(name: String) extends CreateEntry(name: String) {
-
+class Touch(name: String) extends CreateEntry(name: String) {
   override def createSpecificEntry(state: State): DirEntry = {
-    Directory.empty(state.wd.path, name)
+    File.empty(state.wd.path, name)
   }
 }
